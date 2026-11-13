@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shop-config
+  namespace: shop
+data:
+  POSTGRES_HOST: postgres
+  POSTGRES_PORT: "5432"
+  RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+  REDIS_URL: redis://redis:6379/0
+  CATALOG_SERVICE_URL: http://catalog-service:8000
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: shop-secret
+  namespace: shop
+type: Opaque
+stringData:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  JWT_SECRET: change-me-in-production
